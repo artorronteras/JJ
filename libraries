@@ -1,0 +1,43 @@
+pckgs <- c(
+  "crayon",
+  "forcats",
+  "glue",
+  "ggplot2",
+  "gtsummary",
+  "janitor",
+  "openxlsx",
+  "readxl",
+  "stringr",
+  "tidyverse",
+  "viridis",
+  "lubridate"
+)
+
+log_pckgs_loaded <- lapply(pckgs, require, character.only = TRUE)
+
+if (!all(unlist(log_pckgs_loaded))) {
+  cat(
+    bold(
+      red(
+        glue(
+          "\n\n[{ Sys.time() }] ",
+          "Ha habido algún problema en alguno de los paquetes.
+          Por favor, revisa que todos los paquetes hayan sido instalados\n\n"
+        )
+      )
+    )
+  )
+}
+
+if (all(unlist(log_pckgs_loaded))) {
+  cat(
+    bold(
+      green(
+        glue(
+          "\n\n[{ Sys.time() }] ",
+          "Todos los paquetes se han instalado correctamente\n\n"
+        )
+      )
+    )
+  )
+}
